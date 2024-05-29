@@ -1,2 +1,2 @@
 # SolveShareSoft
-Projet technofutur de fin formation
+Projet technofutur de fin de formation
