@@ -18,6 +18,7 @@ app.use('/api/v1', router);
 
 const port = process.env.PORT || 3000;
 
+
 app.listen(port, () => {
     console.log(`API Server is running on : http://localhost:${port}/api/v1/`);
 });
