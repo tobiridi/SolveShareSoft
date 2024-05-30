@@ -16,6 +16,8 @@ app.use(helmet());
 //config app router
 app.use('/api/v1', router);
 
-app.listen(process.env.PORT, () => {
-    console.log(`API Server is running on : http://localhost:${process.env.PORT}/api/v1/`);
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`API Server is running on : http://localhost:${port}/api/v1/`);
 });
