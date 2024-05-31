@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt');
 const userValidator = require('../Validators/user.validator');
 const userService = require('../Services/user.service');
-const {ValidationError} = require('yup')
+const {ValidationError} = require('yup');
+const jwt = require('jsonwebtoken');
 
 const userController = {
     register: async (req, res, next) => {
@@ -44,11 +45,13 @@ const userController = {
 
             if(getUser) {
                 if(bcrypt.compareSync(validData.password, getUser.password)) {
-                    //TODO: create JWT token
-                    //store : users_id, role, status, block_period
-                    //const accessToken = null;
-                    //return res.status(200).json({data: {accessToken}});
-                    return res.sendStatus(501);
+                    const payload = {
+                        user_id : getUser.users_id,
+                        user_role : getUser.role,
+                        user_status : getUser.status,
+                    };
+                    const accessToken = createJwt(payload);
+                    return res.status(200).json({data: {accessToken}});
                 }
                 else {
                     //password incorrect
@@ -74,5 +77,21 @@ const userController = {
 
     },
 };
+
+/**
+ * Generate with the given payload a JSON Web Token string
+ * @param {string | object | Buffer} payload Payload to sign
+ * @returns {string}
+ */
+const createJwt = (payload) => {
+    const secret = process.env.JWT_SECRET || undefined;
+
+    const options = {
+        algorithm: 'HS256',
+        expiresIn: '2d',
+    };
+
+    return jwt.sign(payload, secret, options);
+}
 
 module.exports = userController;
