@@ -20,6 +20,20 @@ const userService = {
             return false;
         }
     },
+
+    getByEmail : async (email) => {
+        try {
+            await sql.connect(sqlConfig);
+
+            const result = await sql.query`SELECT * FROM Users WHERE email = ${email}`;
+
+            return result.recordset[0];
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    }
 };
 
 module.exports = userService;

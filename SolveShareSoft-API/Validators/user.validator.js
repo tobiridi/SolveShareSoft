@@ -10,6 +10,11 @@ const userValidator = {
         biography: yup.string().min(15).max(250).optional().nullable().default(null)
     }),
 
+    login: yup.object({
+        email: yup.string().email().min(10).max(200).required(),
+        password: yup.string().min(8).max(50).required(),
+    }),
+
 };
 
 module.exports = userValidator;
