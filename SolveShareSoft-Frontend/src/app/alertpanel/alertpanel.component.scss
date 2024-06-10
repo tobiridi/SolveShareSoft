@@ -1,0 +1,41 @@
+.alert {
+    max-width: 400px;
+    font-weight: 400;
+    padding: 20px;
+    display: block;
+    margin: 1rem auto;
+
+    &.info {
+        color: #184c77;
+        background-color: #c0e6ff;
+    }
+
+    &.error {
+        color: #671414;
+        background-color: #f9d4d4;
+    }
+
+    &.success {
+        color: #0f5722;
+        background-color: #cbedd6;
+    }
+    
+    &.warning {
+        color: #764705;
+        background-color: #feecc5;
+    }
+
+    .closeBtn {
+        line-height: 20px;
+        float: right;
+        font-size: 2rem;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-left: 10px;
+    }
+
+    .closeBtn:hover {
+        color: #191919;
+    }
+
+}

@@ -18,21 +18,21 @@ const userController = {
             const DBResult = await userService.register(validData);
 
             if(DBResult) {
-                return res.sendStatus(201);
+                return res.status(201).json({status: 201, message: 'Created'});
             }
             else {
-                return res.status(500).json({code : 500, message : `User can not be registered`});
+                return res.status(500).json({status: 500, message : `User can not be registered`});
             }
 
         } catch (error) {
             //yup validation
             if(error instanceof ValidationError) {
                 //console.error(error);
-                return res.status(400).json(error.errors);
+                return res.status(400).json({status: 400, message: error.errors});
             }
             else {
                 console.error(error);
-                return res.sendStatus(500);
+                return res.status(500).json({status: 500, message: `Internal Server Error`});
             }
         }
     },

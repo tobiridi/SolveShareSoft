@@ -1,6 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
+
+:root{
+    // --primary: #545F71;
+    // --secondary: #9BA5B7;
+    // --tertiary: #EEF1F4;
+    // --background: #F6BE2C;
+}
 
 * {
+    font-family: 'league spartan', sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -13,4 +22,11 @@ body {
 header, main {
     margin: 1rem;
     // outline: 2px solid red;
+}
+
+form .errorMessage {
+    font-size: 1.1rem;
+    text-align: center;
+    color: #ff2222;
+    user-select: none;
 }
