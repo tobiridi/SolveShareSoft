@@ -4,6 +4,7 @@
     padding: 20px;
     display: block;
     margin: 1rem auto;
+    border-radius: 20px;
 
     &.info {
         color: #184c77;
@@ -25,17 +26,17 @@
         background-color: #feecc5;
     }
 
-    .closeBtn {
-        line-height: 20px;
-        float: right;
-        font-size: 2rem;
-        cursor: pointer;
-        transition: 0.3s;
-        margin-left: 10px;
-    }
+    // .closeBtn {
+    //     line-height: 20px;
+    //     float: right;
+    //     font-size: 2rem;
+    //     cursor: pointer;
+    //     transition: 0.3s;
+    //     margin-left: 10px;
+    // }
 
-    .closeBtn:hover {
-        color: #191919;
-    }
+    // .closeBtn:hover {
+    //     color: #191919;
+    // }
 
 }

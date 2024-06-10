@@ -51,27 +51,27 @@ const userController = {
                         user_status : getUser.status,
                     };
                     const accessToken = createJwt(payload);
-                    return res.status(200).json({data: {accessToken}});
+                    return res.status(200).json({status : 200, data: {accessToken}});
                 }
                 else {
                     //password incorrect
-                    return res.status(404).json({code : 404, message : `Email and/or password incorrect`});
+                    return res.status(404).json({status : 404, message : `Email and/or password incorrect`});
                 }
             }
             else {
                 //email incorrect
-                return res.status(404).json({code : 404, message : `Email and/or password incorrect`});
+                return res.status(404).json({status : 404, message : `Email and/or password incorrect`});
             }
             
         } catch (error) {
             //yup validation
             if(error instanceof ValidationError) {
                 //console.error(error);
-                return res.status(400).json(error.errors);
+                return res.status(400).json({status: 400, message: error.errors});
             }
             else {
                 console.error(error);
-                return res.sendStatus(500);
+                return res.status(500).json({status: 500, message: `Internal Server Error`});
             }
         }
 
