@@ -1,0 +1,47 @@
+header {
+    text-align: center;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .login {
+        width: fit-content;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 1rem;
+
+        label {
+            font-size: 1rem;
+            user-select: none;
+        }
+
+        input {
+            font-size: 1.2rem;
+            padding: 5px;
+        }
+
+        .connectBtn {
+            font-size: 1.2rem;
+            padding: 0.6rem;
+            cursor: pointer;
+            border-radius: 20px;
+            user-select: none;
+            opacity: 0.7;
+            color: #f9fbfa;
+            width: 100%;
+            background-color: #5975a5;
+            border: 1px solid #5975a5;
+        }
+
+        .connectBtn:hover {
+            opacity: 1;
+        }
+        
+    }
+}

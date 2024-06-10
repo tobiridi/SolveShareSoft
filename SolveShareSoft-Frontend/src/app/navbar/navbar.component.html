@@ -1,12 +1,26 @@
-<nav class="navbar">
-    <ul>
-        <li><a [routerLink]="[ '/']">SolveShareSoft</a></li>
-        <li><a [routerLink]="[ '/softwares']">Logiciels</a></li>
-        <div class="register-login">
-            <li><a [routerLink]="[ '/register']">Inscription</a></li>
-            <li><a [routerLink]="[ '/login']">Connexion</a></li>
-        </div>
-    </ul>
-    <div class="divider"></div>
-</nav>
+@if (userLogged) {
+    <nav class="navbar">
+        <ul>
+            <li><a [routerLink]="[ '/']">SolveShareSoft</a></li>
+            <li><a [routerLink]="[ '/softwares']">Logiciels</a></li>
+            <!-- TODO: add notification + badge -->
+            <!-- TODO: user profile icone -->
+            <li><a (click)="logout()">Se déconnecter</a></li>
+        </ul>
+        <div class="divider"></div>
+    </nav>
+}
+@else {
+    <nav class="navbar">
+        <ul>
+            <li><a [routerLink]="[ '/']">SolveShareSoft</a></li>
+            <li><a [routerLink]="[ '/softwares']">Logiciels</a></li>
+            <div class="register-login">
+                <li><a [routerLink]="[ '/register']">Inscription</a></li>
+                <li><a [routerLink]="[ '/login']">Connexion</a></li>
+            </div>
+        </ul>
+        <div class="divider"></div>
+    </nav>
+}
 <app-alertpanel></app-alertpanel>

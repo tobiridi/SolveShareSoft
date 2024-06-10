@@ -13,10 +13,9 @@ import { NgClass } from '@angular/common';
 })
 export class AlertpanelComponent implements OnInit, OnDestroy {
   public alertMsg?: Alertmessage
-  public sub: Subscription;
+  private sub!: Subscription;
 
   constructor(private readonly _alert: AlertService) {
-    this.sub = new Subscription();
   }
 
   ngOnInit(): void {
@@ -24,7 +23,7 @@ export class AlertpanelComponent implements OnInit, OnDestroy {
     this.isVisible(false);
 
     this.sub = this._alert.obs$.subscribe({
-      next: (value) => {
+      next: (value: Alertmessage | undefined) => {
         this.alertMsg = value;
         this.isVisible(value ? true : false);
       },

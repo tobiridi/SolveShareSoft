@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment.development';
 import { Observable, map } from 'rxjs';
-import { Router } from '@angular/router';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class UserService {
   private apiURL: string = `${environment.apiURL}/user`;
 
-  constructor(private readonly _httpClient: HttpClient) {
+  constructor(private readonly _httpClient: HttpClient, private readonly _auth: AuthService) {
   }
 
   public register(userData: any): Observable<any> {
@@ -22,6 +22,8 @@ export class UserService {
       .pipe(map(response => {
         const jwt = response.data.accessToken;
         localStorage.setItem('jwt', jwt);
+        //log the user
+        this._auth.loginUser();
       }));
 
   }

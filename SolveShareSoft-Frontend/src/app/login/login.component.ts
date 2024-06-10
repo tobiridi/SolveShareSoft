@@ -3,7 +3,7 @@ import { NavbarComponent } from '../navbar/navbar.component';
 import { AlertService } from '../services/alert.service';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { UserService } from '../services/user.service';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Component({
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit, OnDestroy {
+export class LoginComponent implements OnDestroy {
   public loginForm: FormGroup
   private sub: Subscription;
 
@@ -24,25 +24,21 @@ export class LoginComponent implements OnInit, OnDestroy {
     private readonly _router: Router) {
 
     this.loginForm = this._formBuilder.group({
-      email: ['', [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(200)]],
+      email: [null, [Validators.required, Validators.email, Validators.minLength(10), Validators.maxLength(200)]],
       password: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
     });
 
     this.sub = new Subscription();
   }
   
-  ngOnInit(): void {
-    
-  }
-
   ngOnDestroy(): void {
     this.sub.unsubscribe();
   }
 
   public validLoginForm(): void {
     if(this.loginForm.valid) {
-      this.sub = this._userService.login(this.loginForm.value).subscribe({
-        next: (value) => {
+      const loginSub: Subscription = this._userService.login(this.loginForm.value).subscribe({
+        next: (value: any) => {
           //redirect user to home page
           this._router.navigate(['/']);
         },
@@ -50,7 +46,9 @@ export class LoginComponent implements OnInit, OnDestroy {
           console.error(err);
           this._alert.displayAlert("Email ou mot de passe incorrecte", 'error');
         },
-      })
+      });
+
+      this.sub.add(loginSub);
     }
     else {
       this._alert.displayAlert("Le formulaire n'est pas valide", 'error');
