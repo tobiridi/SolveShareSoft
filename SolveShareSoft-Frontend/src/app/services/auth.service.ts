@@ -12,6 +12,13 @@ export class AuthService {
     return this.bsub.asObservable();
   }
 
+  public get currentUserToken(): string | null {
+    if(this.bsub.value === true) {
+      return localStorage.getItem('jwt');
+    }
+    return null;
+  }
+
   constructor() {
     //check if already have jwt token
     this.isAuthenticate = localStorage.getItem('jwt') ? true : false;
