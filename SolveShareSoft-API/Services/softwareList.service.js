@@ -7,11 +7,11 @@ const softwareListService = {
             await sql.connect(sqlConfig);
 
             const result = await sql.query`SELECT sfl.softwarelist_id, sfl.title, sfl.description, 
-            sfl.created, sfl.last_update, sfl.nbr_views, c.name AS [category], u.username AS [owner]
-            FROM Softwarelist sfl
-            INNER JOIN Users u ON u.users_id = sfl.users_id
-            INNER JOIN Category c ON sfl.category_id = c.category_id
-            WHERE is_public = 1`;
+                    sfl.created, sfl.last_update, sfl.nbr_views, c.name AS [category], u.username AS [owner]
+                    FROM Softwarelist sfl
+                    INNER JOIN Users u ON u.users_id = sfl.users_id
+                    INNER JOIN Category c ON sfl.category_id = c.category_id
+                    WHERE is_public = 1`;
 
             return result.recordset;
             
@@ -22,22 +22,23 @@ const softwareListService = {
         }
     },
 
-    // create: async (data) => {
-    //     try {
-    //         await sql.connect(sqlConfig);
+    create: async (userId, softListData) => {
+        try {
+            await sql.connect(sqlConfig);
 
-    //         const { title, description, categoryId, userId } = data;
+            const { title, description, categoryId, isPublic } = softListData;
 
-    //         const result = await sql.query`INSERT INTO Softwarelist (title, description, category_id, users_id) VALUES (${title}, ${description}, ${categoryId}, ${userId})`;
+            const result = await sql.query`INSERT INTO Softwarelist (title, description, is_public, category_id, users_id) 
+                    VALUES (${title}, ${description}, ${isPublic}, ${categoryId}, ${userId})`;
 
-    //         return result.rowsAffected[0] > 0;
+            return result.rowsAffected[0] > 0;
             
-    //     } catch (error) {
-    //         //sql error
-    //         console.error(error.message);
-    //         return false;
-    //     }
-    // },
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
 
     // delete: async (softListId) => {
     //     try {
