@@ -1,0 +1,34 @@
+.sidebar {
+    position: absolute;
+    width: 300px;
+    height: 100vh;
+    background-color: #b1ccd8;
+    padding-left: 1rem;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.sidebar ul {
+    position: relative;
+}
+
+.sidebar li {
+    user-select: none;
+    list-style: none;
+    margin: 2rem 0;
+}
+
+.sidebar li a {
+    font-size: 2rem;
+    text-decoration: none;
+    color: #675d5d;
+    cursor: pointer;
+    padding: 10px;
+    font-weight: 200;
+}
+
+.sidebar li a:hover {
+    color: #101010;
+    background-color: #c2e9b1;
+    border-radius: 20px;
+}
