@@ -2,11 +2,10 @@ const softwareListRouter = require('express').Router();
 const softwareListController = require('../Controllers/softwareList.controller');
 const authMiddleware = require('../Middlewares/auth.middleware');
 
-//TODO: don't forget to uncomment
-//softwareListRouter.use(authMiddleware.verifyToken);
+softwareListRouter.use(authMiddleware.verifyToken);
 
 softwareListRouter.route('/')
-    .get(softwareListController.getAllSoftList)
+    .get(softwareListController.getAllPublicSoftList)
     .post(softwareListController.createSoftList)
 
 softwareListRouter.route('/:id')
