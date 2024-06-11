@@ -33,6 +33,21 @@ const categoryService = {
             return false;
         }
     },
+
+    delete: async (categoryId) => {
+        try {
+            await sql.connect(sqlConfig);
+
+            const result = await sql.query`DELETE FROM Category WHERE category_id = ${categoryId}`;
+
+            return result.rowsAffected[0] > 0;
+            
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
 }
 
 module.exports = categoryService;
