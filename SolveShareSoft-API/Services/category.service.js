@@ -8,7 +8,24 @@ const categoryService = {
 
             const result = await sql.query`SELECT * FROM Category`;
 
-            return result.recordset[0];
+            return result.recordset;
+            
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
+
+    create: async (data) => {
+        try {
+            await sql.connect(sqlConfig);
+
+            const { name } = data;
+
+            const result = await sql.query`INSERT INTO Category values (${name})`;
+
+            return result.rowsAffected[0] > 0;
             
         } catch (error) {
             //sql error
