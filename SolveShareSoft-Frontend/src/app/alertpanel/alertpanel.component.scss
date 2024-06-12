@@ -1,10 +1,15 @@
 .alert {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
     max-width: 400px;
     font-weight: 400;
     padding: 20px;
     display: block;
-    margin: 1rem auto;
     border-radius: 20px;
+    opacity: 0;
+    animation: popAlert 2.5s;
 
     &.info {
         color: #184c77;
@@ -25,18 +30,17 @@
         color: #764705;
         background-color: #feecc5;
     }
+}
 
-    // .closeBtn {
-    //     line-height: 20px;
-    //     float: right;
-    //     font-size: 2rem;
-    //     cursor: pointer;
-    //     transition: 0.3s;
-    //     margin-left: 10px;
-    // }
-
-    // .closeBtn:hover {
-    //     color: #191919;
-    // }
-
+@keyframes popAlert {
+    0% {
+        bottom: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 10px;
+        opacity: 1;
+    }
 }

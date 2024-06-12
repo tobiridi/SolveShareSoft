@@ -30,13 +30,6 @@ body {
         width: 100%;
         height: 90vh;
     
-        .container {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: row;
-        }
-    
         form .errorMessage {
             font-size: 1.1rem;
             text-align: center;
