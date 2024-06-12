@@ -2,10 +2,13 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
 :root{
+    --border-color: #dadada;
+    --background-color: #f2f5f8;
+
     // --primary: #545F71;
     // --secondary: #9BA5B7;
-    // --tertiary: #EEF1F4;
-    // --background: #F6BE2C;
+    // --tertiary: #393a3a;
+    // --button-background: #5975a5;
 }
 
 * {
@@ -16,10 +19,27 @@
 }
 
 body {
-    background-color: #f2f5f8;
+    background-color: var(--background-color);
+    // background-color: #08A16D;
+    // background-color: #167FAB;
+    // background-color: #063042;
+    // background-color: #B34236;
 
     header, footer {
         height: 5vh;
+    }
+
+    footer {
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background-color: #393a3a;
+        border-top: var(--border-color);
+
+        p {
+            font-size: 0.8rem;
+        }
     }
 
     main {

@@ -3,12 +3,13 @@
 }
 
 .sidebar {
-    width: 300px;
-    background-color: #b1ccd8;
+    width: 250px;
+    // background-color: #b1ccd8;
     height: 100%;
     padding: 2rem;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
+    border-right: 1px solid var(--border-color);
+    // border-top-right-radius: 20px;
+    // border-bottom-right-radius: 20px;
 
     li {
         user-select: none;
@@ -22,12 +23,13 @@
             color: #675d5d;
             font-weight: 300;
             cursor: pointer;
+            border: 1px solid #b1e9ce;
+            border-radius: 20px;
         }
 
         a:hover {
             color: #101010;
-            background-color: #c2e9b1;
-            border-radius: 20px;
+            background-color: #b1e9ce;
         }
     }
 }
