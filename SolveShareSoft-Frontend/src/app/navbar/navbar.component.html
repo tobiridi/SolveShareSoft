@@ -1,26 +1,29 @@
 @if (userLogged) {
     <nav class="navbar">
+        <div class="logo">
+            <a [routerLink]="[ '/']">SolveShareSoft</a>
+        </div>
         <ul>
-            <li><a [routerLink]="[ '/']">SolveShareSoft</a></li>
             <li><a [routerLink]="[ '/softwares']">Logiciels</a></li>
-            <!-- TODO: add notification + badge -->
+        </ul>
+        <ul>
             <!-- TODO: user profile icone -->
             <li><a (click)="logout()">Se déconnecter</a></li>
         </ul>
-        <div class="divider"></div>
     </nav>
 }
 @else {
     <nav class="navbar">
+        <div class="logo">
+            <a [routerLink]="[ '/']">SolveShareSoft</a>
+        </div>
         <ul>
-            <li><a [routerLink]="[ '/']">SolveShareSoft</a></li>
             <li><a [routerLink]="[ '/softwares']">Logiciels</a></li>
-            <div class="register-login">
-                <li><a [routerLink]="[ '/register']">Inscription</a></li>
-                <li><a [routerLink]="[ '/login']">Connexion</a></li>
-            </div>
         </ul>
-        <div class="divider"></div>
+        <ul class="register-login">
+            <li><a [routerLink]="[ '/register']">Inscription</a></li>
+            <li><a [routerLink]="[ '/login']">Connexion</a></li>
+        </ul>
     </nav>
 }
 <app-alertpanel></app-alertpanel>
