@@ -1,22 +1,21 @@
 .navbar {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center; 
     border-bottom: 1px solid #747272;
-    height: 4rem;
+    height: 100%;
+    padding: 0 2.5rem;
 
     .logo {
         a {
             font-size: 1.3rem;
-            color: #5a4e4e;
+            color: #7a6c6c;
             text-decoration: none;
         }
         
         a:hover {
             color: #101010;
-            text-decoration: underline;
-            // font-size: 1.5rem;
         }
     }
 
@@ -32,7 +31,7 @@
             list-style: none;
 
             a {
-                font-size: 1.3rem;
+                font-size: 1rem;
                 text-decoration: none;
                 color: #5a4e4e;
                 transition: all 0.3s ease-out;
@@ -50,11 +49,12 @@
             margin-right: 0px;
         }
     }
+
+    .register-login {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 1rem;
+    }
 }
 
-.register-login {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 1rem;
-}

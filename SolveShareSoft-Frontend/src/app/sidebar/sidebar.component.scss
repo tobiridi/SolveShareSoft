@@ -1,34 +1,33 @@
+:host {
+    height: 100%;
+}
+
 .sidebar {
-    position: absolute;
     width: 300px;
-    height: 100vh;
     background-color: #b1ccd8;
-    padding-left: 1rem;
+    height: 100%;
+    padding: 2rem;
     border-top-right-radius: 20px;
     border-bottom-right-radius: 20px;
-}
 
-.sidebar ul {
-    position: relative;
-}
+    li {
+        user-select: none;
+        list-style: none;
+        margin-bottom: 2rem;
 
-.sidebar li {
-    user-select: none;
-    list-style: none;
-    margin: 2rem 0;
-}
+        a {
+            font-size: 1rem;
+            padding: 0.5rem 0.7rem;
+            text-decoration: none;
+            color: #675d5d;
+            font-weight: 200;
+            cursor: pointer;
+        }
 
-.sidebar li a {
-    font-size: 2rem;
-    text-decoration: none;
-    color: #675d5d;
-    cursor: pointer;
-    padding: 5px 10px;
-    font-weight: 200;
-}
-
-.sidebar li a:hover {
-    color: #101010;
-    background-color: #c2e9b1;
-    border-radius: 20px;
+        a:hover {
+            color: #101010;
+            background-color: #c2e9b1;
+            border-radius: 20px;
+        }
+    }
 }
