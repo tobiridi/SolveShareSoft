@@ -9,7 +9,7 @@ softwareListRouter.route('/')
     .post(softwareListController.createSoftList)
 
 softwareListRouter.route('/:id')
-    .put(softwareListController.updateSoftList)
+    // .put(softwareListController.updateSoftList)
     .delete(softwareListController.deleteSoftList)
 
 module.exports = softwareListRouter;

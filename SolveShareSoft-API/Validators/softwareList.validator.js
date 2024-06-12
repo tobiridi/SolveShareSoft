@@ -7,6 +7,10 @@ const softwareListValidator = {
         isPublic: yup.boolean().optional().default(false),
         categoryId: yup.number().integer().positive().required(),
     }),
+    
+    verifId: yup.object({
+        id: yup.number().integer().positive().required(),
+    }),
 };
 
 module.exports = softwareListValidator;

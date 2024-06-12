@@ -40,20 +40,21 @@ const softwareListService = {
         }
     },
 
-    // delete: async (softListId) => {
-    //     try {
-    //         await sql.connect(sqlConfig);
+    delete: async (userId, softListId) => {
+        try {
+            await sql.connect(sqlConfig);
 
-    //         const result = await sql.query`DELETE FROM Softwarelist WHERE softwarelist_id = ${softListId}`;
+            const result = await sql.query`DELETE FROM Softwarelist 
+                    WHERE softwarelist_id = ${softListId} AND users_id = ${userId}`;
 
-    //         return result.rowsAffected[0] > 0;
+            return result.rowsAffected[0] > 0;
             
-    //     } catch (error) {
-    //         //sql error
-    //         console.error(error.message);
-    //         return false;
-    //     }
-    // },
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
 }
 
 module.exports = softwareListService;
