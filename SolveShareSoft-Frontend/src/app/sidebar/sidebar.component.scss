@@ -4,12 +4,10 @@
 
 .sidebar {
     width: 250px;
-    // background-color: #b1ccd8;
     height: 100%;
     padding: 2rem;
     border-right: 1px solid var(--border-color);
-    // border-top-right-radius: 20px;
-    // border-bottom-right-radius: 20px;
+    border-bottom: 1px solid var(--border-color);
 
     li {
         user-select: none;
@@ -20,16 +18,16 @@
             font-size: 1rem;
             padding: 0.5rem 0.7rem;
             text-decoration: none;
-            color: #675d5d;
-            font-weight: 300;
+            color: var(--text-color);
+            font-weight: var(--text-weight);
             cursor: pointer;
-            border: 1px solid #b1e9ce;
-            border-radius: 20px;
+            border: 1px solid var(--primary);
+            border-radius: var(--border-radius);
         }
 
         a:hover {
-            color: #101010;
-            background-color: #b1e9ce;
+            color: #ffffff;
+            background-color: var(--primary);
         }
     }
 }

@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap');
 
 :root{
-    /**
+    /*
     #3084F2
     primary : élément qui ressort sans tout écran
 
@@ -21,13 +21,15 @@
 
     */
 
+    --primary: #3084F2;
+    --background-primary: #ffffff;
+    --background-secondary: #fafbfd;
+    --background-footer: #fbfbfb;
     --border-color: #dadada;
-    --background-color: #ffffff;
-
-    // --primary: #545F71;
-    // --secondary: #9BA5B7;
-    // --tertiary: #393a3a;
-    // --button-background: #5975a5;
+    --border-radius: 8px;
+    --title-weight: 500;
+    --text-color: #2d2b2b;
+    --text-weight: 200;
 }
 
 * {
@@ -38,26 +40,26 @@
 }
 
 body {
-    background-color: var(--background-color);
-    // background-color: #08A16D;
-    // background-color: #167FAB;
-    // background-color: #063042;
-    // background-color: #B34236;
+    background-color: var(--background-primary);
+
+    h1, h2, h3, h4, h5, h6 {
+        color: var(--text-color);
+    }
 
     header, footer {
         height: 5vh;
     }
 
     footer {
-        color: #fff;
         display: flex;
         justify-content: center;
         align-items: center;
-        background-color: #393a3a;
+        background-color: var(--background-footer);
         border-top: var(--border-color);
-
+        
         p {
             font-size: 0.8rem;
+            color: var(--text-color);
         }
     }
 
@@ -72,7 +74,7 @@ body {
         form .errorMessage {
             font-size: 1.1rem;
             text-align: center;
-            color: #ff2222;
+            color: #e92f2f;
             user-select: none;
         }
     }

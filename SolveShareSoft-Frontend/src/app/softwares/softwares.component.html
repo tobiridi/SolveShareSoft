@@ -1,40 +1,50 @@
 <app-sidebar></app-sidebar>
 <div class="container">
-    <div class="content">
+    <div class="softwarelists">
         <h1>Listes des logiciels</h1>
-        <div class="content-filters">
-            <button type="button">Filter 1</button>
-            <button type="button">Filter 2</button>
-            <button type="button">Filter 3</button>
-            <button type="button">Filter 4</button>
+        <div class="filters">
+            <button type="button">Catégorie</button>
+            <button type="button">Récent</button>
+            <button type="button">Plus vues</button>
         </div>
     
-        <div class="content-softlist">
+        <div class="softwarelists-content">
             @for (softList of allPublicSoftList; track $index) {
                 <article class="list-container">
-                    <h3> {{ softList.title }} </h3>
-                    <p><small class="description">{{ softList.description }}</small></p>
-                    <em class="category">{{ softList.category }}</em>
-                    <p class="details">
-                        <span>{{ softList.created }}</span>
-                        <span>{{ softList.owner.username }}</span>
-                        <span>{{ softList.lastUpdate }}</span>
-                        <span>{{ softList.nbrViews }} vues</span>
-                    </p>
+                    <div class="list-title">
+                        <h3> {{ softList.title }}</h3>
+                        <p class="list-category"><strong>{{ softList.category.name }}</strong></p>
+                    </div>
+                    <p class="list-description">{{ softList.description }}</p>
+                    <div class="list-details">
+                        <span>Créé le {{ softList.created | date: 'dd/MM/yyyy' }}</span>
+                        <span>Créé par <a [routerLink]="['/softwares']">{{ softList.owner.username }}</a></span>
+                        <span>Modifié le {{ softList.lastUpdate | date: 'dd/MM/yyyy' }}</span>
+                        <span>{{ softList.nbrViews }} Vues</span>
+                    </div>
                 </article>
             }
             @empty {
                 <p>Aucune liste n'est disponible.</p>
             }
+
+            <!-- TODO: not implemented -->
+            <div class="pagination">
+                <p>Pagination</p>
+            </div>
         </div>
-        
-        <!-- TODO: not implemented -->
-        <!-- <div class="pagination">
-        </div> -->
     </div>
 
     <aside class="news">
         <h3>Nouvelles listes</h3>
+        @for (item of newsSoftList; track $index) {
+            <article>
+
+            </article>
+        }
+        @empty {
+            <p>Aucune nouvelle listes créer aujourd'hui</p>
+        }
     </aside>
 
 </div>
