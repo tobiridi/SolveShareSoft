@@ -10,17 +10,22 @@
         </div>
     
         <div class="content-softlist">
-            <article class="list-container">
-                <h3>Titre de ma liste</h3>
-                <p><small>Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus magnam laudantium repellendus neque culpa</small></p>
-                <em class="category">Catégorie 1</em>
-                <p class="">
-                    <span>Crée le 12/10/2024</span>
-                    <span>Crée par tony</span>
-                    <span>Modifié le 12/10/2024</span>
-                    <span>345 vues</span>
-                </p>
-            </article>
+            @for (softList of allPublicSoftList; track $index) {
+                <article class="list-container">
+                    <h3> {{ softList.title }} </h3>
+                    <p><small class="description">{{ softList.description }}</small></p>
+                    <em class="category">{{ softList.category }}</em>
+                    <p class="details">
+                        <span>{{ softList.created }}</span>
+                        <span>{{ softList.owner.username }}</span>
+                        <span>{{ softList.lastUpdate }}</span>
+                        <span>{{ softList.nbrViews }} vues</span>
+                    </p>
+                </article>
+            }
+            @empty {
+                <p>Aucune liste n'est disponible.</p>
+            }
         </div>
         
         <!-- TODO: not implemented -->

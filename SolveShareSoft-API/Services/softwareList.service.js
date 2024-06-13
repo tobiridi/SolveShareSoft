@@ -7,7 +7,7 @@ const softwareListService = {
             await sql.connect(sqlConfig);
 
             const result = await sql.query`SELECT sfl.softwarelist_id, sfl.title, sfl.description, 
-                    sfl.created, sfl.last_update, sfl.nbr_views, c.name AS [category], u.username AS [owner]
+                    sfl.created, sfl.last_update, sfl.nbr_views, c.category_id, c.name AS [category_name], u.username AS [owner]
                     FROM Softwarelist sfl
                     INNER JOIN Users u ON u.users_id = sfl.users_id
                     INNER JOIN Category c ON sfl.category_id = c.category_id

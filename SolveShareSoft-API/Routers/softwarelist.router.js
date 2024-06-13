@@ -2,14 +2,14 @@ const softwareListRouter = require('express').Router();
 const softwareListController = require('../Controllers/softwareList.controller');
 const authMiddleware = require('../Middlewares/auth.middleware');
 
-softwareListRouter.use(authMiddleware.verifyToken);
+//softwareListRouter.use(authMiddleware.verifyToken);
 
 softwareListRouter.route('/')
     .get(softwareListController.getAllPublicSoftList)
-    .post(softwareListController.createSoftList)
+    .post(authMiddleware.verifyToken, softwareListController.createSoftList)
 
 softwareListRouter.route('/:id')
     // .put(softwareListController.updateSoftList)
-    .delete(softwareListController.deleteSoftList)
+    .delete(authMiddleware.verifyToken, softwareListController.deleteSoftList)
 
 module.exports = softwareListRouter;
