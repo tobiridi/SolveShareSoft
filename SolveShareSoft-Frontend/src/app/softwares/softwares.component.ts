@@ -17,7 +17,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './softwares.component.scss'
 })
 export class SoftwaresComponent implements OnInit, OnDestroy {
-  public allPublicSoftList: SoftwareList[];
+  private limitDisplayed: number;
+  private allPublicSoftList: SoftwareList[];
+  public displayedSoftList: SoftwareList[];
   public newsSoftList: SoftwareList[];
   public allCategories: Category[];
   private sub: Subscription;
@@ -25,6 +27,10 @@ export class SoftwaresComponent implements OnInit, OnDestroy {
   constructor(private readonly _softList: SoftwarelistService, private readonly _alert: AlertService) {
     this.sub = new Subscription();
     this.allPublicSoftList = [];
+    this.displayedSoftList = [];
+    //limit displayd by page
+    this.limitDisplayed = 6;
+
     //TODO: get all news soft list
     this.newsSoftList = [];
     //TODO: get all category
@@ -35,6 +41,10 @@ export class SoftwaresComponent implements OnInit, OnDestroy {
       const getAll = this._softList.getAllPublicSoftList().subscribe({
         next: (value: SoftwareList[]) => {
           this.allPublicSoftList = value;
+          //TODO: improve limit pagination
+          for (let i = 0; i < this.limitDisplayed; i++) {
+            this.displayedSoftList.push(this.allPublicSoftList[i]);
+          }
         },
         error: (err) => {
           console.error(err);

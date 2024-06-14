@@ -1,5 +1,5 @@
 <h1>Ajout d'une nouvelle liste</h1>
-<form action="#" method="post" [formGroup]="softListForm" class="softList" (ngSubmit)="validForm()">
+<form action="#" method="post" [formGroup]="softListForm" class="softList" (ngSubmit)="createSoftList()">
     <label for="title">Titre</label><input type="text" name="title" id="title" formControlName="title">
     <label for="description">Description</label><textarea name="description" id="description" cols="40" rows="10" formControlName="description"></textarea>
     <div class="horizontal">
@@ -7,7 +7,7 @@
     </div>
     <div class="horizontal">
         <label for="category">Category</label>
-        <select name="category" id="category" formControlName="category">
+        <select name="category" id="category" formControlName="categoryId">
             @for (cat of allCategories; track $index) {
                 <option [value]="cat.categoryId">{{ cat.name }}</option>
             }

@@ -9,7 +9,7 @@
         </div>
     
         <div class="softwarelists-content">
-            @for (softList of allPublicSoftList; track $index) {
+            @for (softList of displayedSoftList; track $index) {
                 <article class="list-container">
                     <div class="list-title">
                         <h3> {{ softList.title }}</h3>

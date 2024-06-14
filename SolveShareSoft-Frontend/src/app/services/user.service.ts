@@ -25,7 +25,6 @@ export class UserService {
         //log the user
         this._auth.loginUser();
       }));
-
   }
 
 }

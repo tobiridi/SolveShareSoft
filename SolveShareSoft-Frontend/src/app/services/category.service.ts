@@ -28,8 +28,6 @@ export class CategoryService {
             allCat.push(cat);
           });
 
-          console.log(allCat);
-
           return allCat;
         }));
    }

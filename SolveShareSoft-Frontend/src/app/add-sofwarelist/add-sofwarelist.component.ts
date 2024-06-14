@@ -4,6 +4,7 @@ import { AlertService } from '../services/alert.service';
 import { Subscription } from 'rxjs';
 import { Category } from '../shared/category';
 import { CategoryService } from '../services/category.service';
+import { SoftwarelistService } from '../services/softwarelist.service';
 
 @Component({
   selector: 'app-add-sofwarelist',
@@ -17,7 +18,11 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public allCategories: Category[];
 
-  constructor(private readonly _alert: AlertService, private readonly _formBuilder: FormBuilder, private readonly _catService: CategoryService) {
+  constructor(private readonly _alert: AlertService,
+    private readonly _formBuilder: FormBuilder,
+    private readonly _catService: CategoryService,
+    private readonly _softList: SoftwarelistService) {
+
     this.sub = new Subscription();
     this.allCategories = [];
 
@@ -25,13 +30,13 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
       title: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(200)]],
       description: [null, [Validators.required, Validators.minLength(8), Validators.maxLength(50)]],
       isPublic: [false, [Validators.required]],
-      category: [null, [Validators.required]],
+      categoryId: [null, [Validators.required]],
     });
   }
 
   ngOnInit(): void {
     this.allCategories = [];
-    const allCat: Subscription = this._catService.getAllCategories().subscribe({
+    const allCatSub: Subscription = this._catService.getAllCategories().subscribe({
       next: (value: Category[]) => {
         this.allCategories = value;
       },
@@ -41,15 +46,30 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
       },
     });
 
-    this.sub.add(allCat);
+    this.sub.add(allCatSub);
   }
 
   ngOnDestroy(): void {
       this.sub.unsubscribe();
   }
 
-  public validForm(): void {
-    console.log(this.softListForm.value);
+  public createSoftList(): void {
+    if (this.softListForm.valid) {
+      const softListSub: Subscription = this._softList.createSoftList(this.softListForm.value).subscribe({
+        next: (value: any) => {
+          this._alert.displayAlert("Liste créer avec succès", 'success');
+        },
+        error: (err) => {
+          console.error(err);
+          this._alert.displayAlert("Erreur lors de la création de la liste", 'error');
+        },
+      });
+
+      this.sub.add(softListSub);
+    }
+    else {
+      this._alert.displayAlert("Le formulaire n'est pas valide", 'error');
+    }
   }
 
 }

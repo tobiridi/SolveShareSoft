@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SoftwareList } from '../shared/software-list';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
-import { BehaviorSubject, Observable, map } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { Category } from '../shared/category';
 import { User } from '../shared/user';
 
@@ -11,23 +11,22 @@ import { User } from '../shared/user';
 })
 export class SoftwarelistService {
   private apiURL: string = `${environment.apiURL}/softwarelist`;
-  private allPublicSoftList: SoftwareList[];
 
   constructor(private readonly _httpClient: HttpClient) { 
-    this.allPublicSoftList = [];
   }
 
-  public createSoftList(): void {
-    //TODO: not implemented
+  public createSoftList(softListData: any): Observable<any> {
+    return this._httpClient.post<any>(this.apiURL, softListData)
+      .pipe(map(response => {
+        return response;
+      }));
   }
 
   public getAllPublicSoftList(): Observable<SoftwareList[]> {
-    //reset public list
-    this.allPublicSoftList = [];
-    
     return this._httpClient.get<any>(this.apiURL)
       .pipe(map((value) => {
         const data = value.data;
+        const allPublicSoftList: SoftwareList[] = [];
 
         data.forEach((element: any) => {
           const cat: Category = {
@@ -51,11 +50,10 @@ export class SoftwarelistService {
             title: element.title
           };
 
-          this.allPublicSoftList.push(softList);
-
+          allPublicSoftList.push(softList);
         });
         
-        return this.allPublicSoftList;
+        return allPublicSoftList;
       }));
   }
 }
