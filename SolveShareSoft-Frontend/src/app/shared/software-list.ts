@@ -10,5 +10,5 @@ export interface SoftwareList {
     isPublic: boolean;
     nbrViews: number;
     category: Category;
-    owner: User;
+    owner?: User;
 }

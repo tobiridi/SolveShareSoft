@@ -35,7 +35,6 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.allCategories = [];
     const allCatSub: Subscription = this._catService.getAllCategories().subscribe({
       next: (value: Category[]) => {
         this.allCategories = value;

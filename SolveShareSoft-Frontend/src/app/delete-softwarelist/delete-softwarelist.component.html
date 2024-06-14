@@ -1,1 +1,32 @@
-<p>delete-softwarelist works!</p>
+<h1>Suppression de liste de logiciels</h1>
+@if (softLists.length > 0) {
+    <table>
+        <thead>
+            <tr>
+                <th>Num</th>
+                <th>Titre</th>
+                <th>Créé le</th>
+                <th>Public</th>
+                <th>Vues</th>
+                <th>Category</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (softList of softLists; track $index) {
+                <tr>
+                    <td>{{ $index + 1 }}</td>
+                    <td>{{ softList.title }}</td>
+                    <td>{{ softList.created | date: 'dd/MM/yyyy' }}</td>
+                    <td><input type="checkbox" [checked]="softList.isPublic" disabled></td>
+                    <td>{{ softList.nbrViews }}</td>
+                    <td>{{ softList.category.name }}</td>
+                    <td><button type="button" (click)="deleteSoftList(softList.softwareListId)">Supprimer</button></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@else {
+    <p>Vous n'avez aucune liste pour le moment</p>
+}

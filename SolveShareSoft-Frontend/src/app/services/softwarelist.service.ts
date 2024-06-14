@@ -22,6 +22,14 @@ export class SoftwarelistService {
       }));
   }
 
+  public deleteSoftList(softListId: number): Observable<any> {
+    return this._httpClient.delete<any>(`${this.apiURL}/${softListId}`)
+      .pipe(map(response => {
+        console.log(response);
+        return response;
+      }));
+  }
+
   public getAllPublicSoftList(): Observable<SoftwareList[]> {
     return this._httpClient.get<any>(this.apiURL)
       .pipe(map((value) => {
@@ -32,11 +40,11 @@ export class SoftwarelistService {
           const cat: Category = {
             categoryId: element.category_id,
             name: element.category_name
-          }
+          };
 
           const owner: User = {
             username: element.owner,
-          }
+          };
 
           const softList: SoftwareList = {
             category: cat,
@@ -56,4 +64,5 @@ export class SoftwarelistService {
         return allPublicSoftList;
       }));
   }
+
 }
