@@ -17,7 +17,14 @@ export class SoftwarelistService {
     this.allPublicSoftList = [];
   }
 
+  public createSoftList(): void {
+    //TODO: not implemented
+  }
+
   public getAllPublicSoftList(): Observable<SoftwareList[]> {
+    //reset public list
+    this.allPublicSoftList = [];
+    
     return this._httpClient.get<any>(this.apiURL)
       .pipe(map((value) => {
         const data = value.data;

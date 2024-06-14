@@ -10,4 +10,9 @@ import { RouterLink } from '@angular/router';
 })
 export class SidebarComponent {
 
+  public displayCloseSidebar(): void {
+    const sidebar = document.querySelector('.sidebar') as HTMLElement;
+    sidebar.classList.toggle('close');
+  }
+
 }

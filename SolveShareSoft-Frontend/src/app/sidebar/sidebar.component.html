@@ -1,8 +1,9 @@
 <aside class="sidebar">
     <ul>
-        <li><a [routerLink]="['/softwares']">Ajouter une liste</a></li>
+        <li><a [routerLink]="['/softwares', 'add']">Ajouter une liste</a></li>
         <li><a [routerLink]="['/softwares']">Modifier une liste</a></li>
         <li><a [routerLink]="['/softwares']">Supprimer une liste</a></li>
         <li><a [routerLink]="['/softwares']">Mes listes</a></li>
     </ul>
+    <span class="menuToogle" (click)="displayCloseSidebar()"></span>
 </aside>
