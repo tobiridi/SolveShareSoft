@@ -55,6 +55,26 @@ const softwareListService = {
             return false;
         }
     },
+
+    getAllOwnSoftList: async (userId) => {
+        try {
+            await sql.connect(sqlConfig);
+
+            const result = await sql.query`SELECT sfl.softwarelist_id, sfl.title, sfl.description, 
+                    sfl.created, sfl.last_update, sfl.nbr_views, c.category_id, c.name AS [category_name]
+                    FROM Softwarelist sfl
+                    INNER JOIN Users u ON u.users_id = sfl.users_id
+                    INNER JOIN Category c ON sfl.category_id = c.category_id
+                    WHERE sfl.users_id = ${userId} `;
+
+            return result.recordset;
+            
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
 }
 
 module.exports = softwareListService;

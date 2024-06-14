@@ -3,6 +3,7 @@ const userValidator = require('../Validators/user.validator');
 const userService = require('../Services/user.service');
 const {ValidationError} = require('yup');
 const jwt = require('jsonwebtoken');
+const softwareListService = require('../Services/softwareList.service');
 
 const userController = {
     register: async (req, res, next) => {
@@ -75,6 +76,19 @@ const userController = {
             }
         }
 
+    },
+
+    getOwnerSoftList: async (req, res, next) => {
+        const userId = req.payload.user_id;
+
+        //get from database
+        const dbResult = await softwareListService.getAllOwnSoftList(userId);
+
+        if (dbResult) {
+            return res.status(200).json({ status: 200, data: dbResult });
+        }
+
+        return res.status(500).json({ status: 500, message: `Can not get software list` });
     },
 };
 
