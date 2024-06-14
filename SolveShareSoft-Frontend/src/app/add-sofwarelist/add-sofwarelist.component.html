@@ -9,7 +9,7 @@
         <label for="category">Category</label>
         <select name="category" id="category" formControlName="category">
             @for (cat of allCategories; track $index) {
-                <option value="{{ cat.categoryId }}">{{ cat.name }}</option>
+                <option [value]="cat.categoryId">{{ cat.name }}</option>
             }
             @empty {
                 <option value="aucune_categorie">Aucune catégorie</option>
@@ -24,6 +24,9 @@
         }
         @if (softListForm.get("description")?.invalid) {
             <p>Description invalide</p>
+        }
+        @if (softListForm.get("category")?.invalid) {
+            <p>Aucune catégorie sélectionner</p>
         }
     </div>
 </form>

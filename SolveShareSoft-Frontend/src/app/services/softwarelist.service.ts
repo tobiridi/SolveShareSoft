@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { SoftwareList } from '../shared/software-list';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment.development';
-import { Observable, map } from 'rxjs';
+import { BehaviorSubject, Observable, map } from 'rxjs';
 import { Category } from '../shared/category';
 import { User } from '../shared/user';
 

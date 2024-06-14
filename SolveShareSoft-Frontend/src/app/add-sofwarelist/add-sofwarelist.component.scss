@@ -20,13 +20,9 @@ h1 {
         user-select: none;
     }
 
-    input {
+    input, textarea {
         font-size: 1.2rem;
         padding: 5px;
-    }
-
-    textarea {
-        padding: 10px;
     }
 
     .horizontal {

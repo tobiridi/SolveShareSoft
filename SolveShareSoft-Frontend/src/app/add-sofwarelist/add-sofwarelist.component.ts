@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AlertService } from '../services/alert.service';
 import { Subscription } from 'rxjs';
 import { Category } from '../shared/category';
+import { CategoryService } from '../services/category.service';
 
 @Component({
   selector: 'app-add-sofwarelist',
@@ -16,7 +17,7 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
   private sub: Subscription;
   public allCategories: Category[];
 
-  constructor(private readonly _alert: AlertService, private readonly _formBuilder: FormBuilder) {
+  constructor(private readonly _alert: AlertService, private readonly _formBuilder: FormBuilder, private readonly _catService: CategoryService) {
     this.sub = new Subscription();
     this.allCategories = [];
 
@@ -29,12 +30,18 @@ export class AddSofwarelistComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    //TODO: add catergory service
-    this.allCategories = [
-      {categoryId: 1, name: 'cat 1'},
-      {categoryId: 2, name: 'cat 2'},
-      {categoryId: 3, name: 'cat 3'},
-    ];
+    this.allCategories = [];
+    const allCat: Subscription = this._catService.getAllCategories().subscribe({
+      next: (value: Category[]) => {
+        this.allCategories = value;
+      },
+      error: (err) => {
+        console.error(err);
+        this._alert.displayAlert('Erreur lors du chargement des catégories', 'error');
+      },
+    });
+
+    this.sub.add(allCat);
   }
 
   ngOnDestroy(): void {
