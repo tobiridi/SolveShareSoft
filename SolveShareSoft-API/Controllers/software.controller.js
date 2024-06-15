@@ -1,5 +1,4 @@
 const softwareService = require("../Services/software.service");
-const softwareListService = require("../Services/softwareList.service");
 const softwareValidator = require('../Validators/software.validator')
 const {ValidationError} = require('yup');
 
