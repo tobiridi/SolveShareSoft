@@ -12,9 +12,9 @@ const softwareValidator = {
         softwareListId: yup.number().integer().positive().required(),
     }),
     
-    // verifId: yup.object({
-    //     id: yup.number().integer().positive().required(),
-    // }),
+    verifId: yup.object({
+        id: yup.number().integer().positive().required(),
+    }),
 };
 
 module.exports = softwareValidator;
