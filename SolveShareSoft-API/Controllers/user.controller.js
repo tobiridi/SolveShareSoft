@@ -78,7 +78,7 @@ const userController = {
 
     },
 
-    getOwnerSoftList: async (req, res, next) => {
+    getOwnSoftLists: async (req, res, next) => {
         const userId = req.payload.user_id;
 
         //get from database

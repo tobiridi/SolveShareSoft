@@ -46,6 +46,7 @@ export class DeleteSoftwarelistComponent implements OnInit, OnDestroy {
     const delSoftListSub: Subscription = this._softList.deleteSoftList(softListId).subscribe({
       next: (value: any) => {
         this.softLists = this.softLists.filter((sftl => sftl.softwareListId !== softListId));
+        this._alert.displayAlert('Liste supprimée', 'success');
       },
       error: (err) => {
         console.error(err);

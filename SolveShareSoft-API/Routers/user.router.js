@@ -4,7 +4,7 @@ const authMiddleware = require('../Middlewares/auth.middleware');
 
 userRouter.post('/', userController.register);
 userRouter.post('/login', userController.login);
-userRouter.get('/softwarelist', authMiddleware.verifyToken, userController.getOwnerSoftList);
+userRouter.get('/softwarelist', authMiddleware.verifyToken, userController.getOwnSoftLists);
 
 
 module.exports = userRouter;
