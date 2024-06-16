@@ -86,7 +86,7 @@ const softwareListService = {
                     soft.size_unit, soft.last_update AS [soft_last_upd], soft.lang, soft.nbr_downloads, soft.link
                     FROM Softwarelist sfl
                     INNER JOIN Category c ON sfl.category_id = c.category_id
-                    INNER JOIN Software soft ON soft.softwarelist_id = sfl.softwarelist_id
+                    LEFT JOIN Software soft ON soft.softwarelist_id = sfl.softwarelist_id
                     WHERE sfl.users_id = ${userId}`;
 
             return result.recordset;

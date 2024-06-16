@@ -1,4 +1,5 @@
 import { Category } from "./category";
+import { Software } from "./software";
 import { User } from "./user";
 
 export interface SoftwareList {
@@ -11,4 +12,5 @@ export interface SoftwareList {
     nbrViews: number;
     category: Category;
     owner?: User;
+    softwares : Software[];
 }

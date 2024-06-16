@@ -55,7 +55,8 @@ export class SoftwarelistService {
             lastUpdate: element.last_update,
             nbrViews: element.nbr_views,
             softwareListId: element.softwarelist_id,
-            title: element.title
+            title: element.title,
+            softwares: []
           };
 
           allPublicSoftList.push(softList);
