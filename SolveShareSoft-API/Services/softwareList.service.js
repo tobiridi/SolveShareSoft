@@ -56,7 +56,7 @@ const softwareListService = {
         }
     },
 
-    getAllOwnSoftList: async (userId) => {
+    getAllOwnSoftLists: async (userId) => {
         try {
             await sql.connect(sqlConfig);
 
@@ -65,6 +65,29 @@ const softwareListService = {
                     FROM Softwarelist sfl
                     INNER JOIN Category c ON sfl.category_id = c.category_id
                     WHERE sfl.users_id = ${userId} `;
+
+            return result.recordset;
+            
+        } catch (error) {
+            //sql error
+            console.error(error.message);
+            return false;
+        }
+    },
+
+    getSoftsFromSoftLists: async (userId) => {
+        try {
+            await sql.connect(sqlConfig);
+
+            const result = await sql.query`SELECT sfl.softwarelist_id, sfl.title, sfl.description AS [softList_desc], 
+                    sfl.created, sfl.last_update AS [softList_last_upd], sfl.nbr_views, sfl.is_public,
+                    c.category_id, c.name AS [category_name],
+                    soft.software_id, soft.name, soft.description AS [soft_desc], soft.version, soft.size,
+                    soft.size_unit, soft.last_update AS [soft_last_upd], soft.lang, soft.nbr_downloads, soft.link
+                    FROM Softwarelist sfl
+                    INNER JOIN Category c ON sfl.category_id = c.category_id
+                    INNER JOIN Software soft ON soft.softwarelist_id = sfl.softwarelist_id
+                    WHERE sfl.users_id = ${userId}`;
 
             return result.recordset;
             

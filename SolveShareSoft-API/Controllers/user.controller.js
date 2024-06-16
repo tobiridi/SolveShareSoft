@@ -81,14 +81,25 @@ const userController = {
     getOwnSoftLists: async (req, res, next) => {
         const userId = req.payload.user_id;
 
-        //get from database
-        const dbResult = await softwareListService.getAllOwnSoftList(userId);
+        const dbResult = await softwareListService.getAllOwnSoftLists(userId);
 
         if (dbResult) {
             return res.status(200).json({ status: 200, data: dbResult });
         }
 
         return res.status(500).json({ status: 500, message: `Can not get software list` });
+    },
+
+    getSoftwaresFromSoftLists: async (req, res, next) => {
+        const userId = req.payload.user_id;
+
+        const dbResult = await softwareListService.getSoftsFromSoftLists(userId);
+
+        if (dbResult) {
+            return res.status(200).json({ status: 200, data: dbResult });
+        }
+
+        return res.status(500).json({ status: 500, message: `Can not get softwares from the software lists` });
     },
 };
 
