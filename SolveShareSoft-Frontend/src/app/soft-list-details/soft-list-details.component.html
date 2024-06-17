@@ -1,1 +1,66 @@
-<p>soft-list-details works!</p>
+@if (currentSoftList) {
+    <div class="container">
+        <div class="softListInfo">
+            <section>
+                <h1>{{ currentSoftList.title }}</h1>
+                <p>{{ currentSoftList.category.name }}</p>
+            </section>
+            <section>
+                <p>Créé le {{ currentSoftList.created | date : 'dd/MM/yyyy'}}</p>
+                <p>Modifiée le {{ currentSoftList.lastUpdate | date : 'dd/MM/yyyy'}}</p>
+                <p>{{ currentSoftList.nbrViews }} Vues</p>
+            </section>
+            <section>
+                <p>{{ currentSoftList.description }}</p>
+            </section>
+        </div>
+        <section class="softwaresInfo">
+            <h2>Logiciels</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Num</th>
+                        <th>Nom</th>
+                        <th>Version</th>
+                        <th>Taille</th>
+                        <th>Modifié</th>
+                        <th>Langue</th>
+                        <th>Téléchargé</th>
+                        <th>Lien</th>
+                        @if (currentSoftList.owner?.userId) {
+                            <th>Actions</th>
+                        }
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (soft of currentSoftList.softwares; track $index) {
+                        <tr>
+                            <td>{{ $index + 1 }}</td>
+                            <td>{{ soft.name }}</td>
+                            <td>{{ soft.version }}</td>
+                            <td>{{ soft.size | number: '1.2' }} {{ soft.sizeUnit }}</td>
+                            <td>{{ soft.lastUpdate | date: 'dd/MM/yyyy'}}</td>
+                            <td>{{ soft.lang }}</td>
+                            <td>{{ soft.nbrDownloads }}</td>
+                            <td><a [href]="soft.link" target="_blank">Lien</a></td>
+                            @if (currentSoftList.owner?.userId) {
+                                <td>
+                                    <button type="button" disabled>Modifier</button>
+                                    <button type="button" (click)="deleteSoft(soft.softwareId)">Supprimer</button>
+                                </td>
+                            }
+                        </tr>
+                    }
+                    @empty {
+                        <tr>
+                            <td colspan="8">Aucun logiciels</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </section>
+        @if (currentSoftList.owner?.userId) {
+            <button type="button">Ajouter un logiciel</button>
+        }
+    </div>
+}
