@@ -1,4 +1,4 @@
-@if (currentSoftList) {
+@if (currentSoftList && !addSoftFormVisible) {
     <div class="container">
         <div class="softListInfo">
             <section>
@@ -43,12 +43,13 @@
                             <td>{{ soft.lang }}</td>
                             <td>{{ soft.nbrDownloads }}</td>
                             <td><a [href]="soft.link" target="_blank">Lien</a></td>
-                            @if (currentSoftList.owner?.userId) {
+                            <!-- TODO: not implemented -->
+                            <!-- @if (currentSoftList.owner?.userId) {
+                            } -->
                                 <td>
                                     <button type="button" disabled>Modifier</button>
                                     <button type="button" (click)="deleteSoft(soft.softwareId)">Supprimer</button>
                                 </td>
-                            }
                         </tr>
                     }
                     @empty {
@@ -59,8 +60,11 @@
                 </tbody>
             </table>
         </section>
-        @if (currentSoftList.owner?.userId) {
-            <button type="button">Ajouter un logiciel</button>
-        }
+        <!-- @if (currentSoftList.owner?.userId) {
+        } -->
+            <button type="button" (click)="addSoftware()">Ajouter un logiciel</button>
     </div>
+}
+@else if (addSoftFormVisible) {
+    <app-add-software (visibilityEmitter)="closeAddSoftwareForm($event)" [currentSoftList]="currentSoftList"></app-add-software>
 }
