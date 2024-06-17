@@ -5,13 +5,14 @@ import { SoftwarelistService } from '../services/softwarelist.service';
 import { AlertService } from '../services/alert.service';
 import { Subscription } from 'rxjs';
 import { UserService } from '../services/user.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-delete-softwarelist',
-  standalone: true,
-  imports: [DatePipe],
-  templateUrl: './delete-softwarelist.component.html',
-  styleUrl: './delete-softwarelist.component.scss'
+    selector: 'app-delete-softwarelist',
+    standalone: true,
+    templateUrl: './delete-softwarelist.component.html',
+    styleUrl: './delete-softwarelist.component.scss',
+    imports: [DatePipe, SidebarComponent]
 })
 export class DeleteSoftwarelistComponent implements OnInit, OnDestroy {
   public softLists: SoftwareList[];

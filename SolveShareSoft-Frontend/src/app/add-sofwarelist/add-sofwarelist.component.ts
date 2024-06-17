@@ -5,13 +5,14 @@ import { Subscription } from 'rxjs';
 import { Category } from '../shared/category';
 import { CategoryService } from '../services/category.service';
 import { SoftwarelistService } from '../services/softwarelist.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-add-sofwarelist',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './add-sofwarelist.component.html',
-  styleUrl: './add-sofwarelist.component.scss'
+    selector: 'app-add-sofwarelist',
+    standalone: true,
+    templateUrl: './add-sofwarelist.component.html',
+    styleUrl: './add-sofwarelist.component.scss',
+    imports: [ReactiveFormsModule, SidebarComponent]
 })
 export class AddSofwarelistComponent implements OnInit, OnDestroy {
   public softListForm: FormGroup

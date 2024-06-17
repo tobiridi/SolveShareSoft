@@ -1,4 +1,5 @@
 @if (currentSoftList && !addSoftFormVisible) {
+    <app-sidebar></app-sidebar>
     <div class="container">
         <div class="softListInfo">
             <section>
@@ -66,5 +67,8 @@
     </div>
 }
 @else if (addSoftFormVisible) {
-    <app-add-software (visibilityEmitter)="closeAddSoftwareForm($event)" [currentSoftList]="currentSoftList"></app-add-software>
+    <app-sidebar></app-sidebar>
+    <div class="container">
+        <app-add-software (visibilityEmitter)="closeAddSoftwareForm($event)" [currentSoftList]="currentSoftList"></app-add-software>
+    </div>
 }

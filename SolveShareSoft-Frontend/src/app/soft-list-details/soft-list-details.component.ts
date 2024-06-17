@@ -8,13 +8,14 @@ import { DatePipe, DecimalPipe } from '@angular/common';
 import { AddSoftwareComponent } from '../add-software/add-software.component';
 import { SoftwareService } from '../services/software.service';
 import { Software } from '../shared/software';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-soft-list-details',
-  standalone: true,
-  imports: [DatePipe, DecimalPipe, AddSoftwareComponent],
-  templateUrl: './soft-list-details.component.html',
-  styleUrl: './soft-list-details.component.scss'
+    selector: 'app-soft-list-details',
+    standalone: true,
+    templateUrl: './soft-list-details.component.html',
+    styleUrl: './soft-list-details.component.scss',
+    imports: [DatePipe, DecimalPipe, AddSoftwareComponent, SidebarComponent]
 })
 export class SoftListDetailsComponent implements OnInit, OnDestroy {
   public currentSoftList?: SoftwareList

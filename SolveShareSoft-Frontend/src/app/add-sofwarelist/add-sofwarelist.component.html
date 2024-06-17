@@ -1,32 +1,35 @@
-<h1>Ajout d'une nouvelle liste</h1>
-<form action="#" method="post" [formGroup]="softListForm" class="softList" (ngSubmit)="createSoftList()">
-    <label for="title">Titre</label><input type="text" name="title" id="title" formControlName="title">
-    <label for="description">Description</label><textarea name="description" id="description" cols="40" rows="10" formControlName="description"></textarea>
-    <div class="horizontal">
-        <label for="isPublic">Public</label><input type="checkbox" name="isPublic" id="isPublic" formControlName="isPublic">
-    </div>
-    <div class="horizontal">
-        <label for="category">Category</label>
-        <select name="category" id="category" formControlName="categoryId">
-            @for (cat of allCategories; track $index) {
-                <option [value]="cat.categoryId">{{ cat.name }}</option>
+<app-sidebar></app-sidebar>
+<div class="container">
+    <h1>Ajout d'une nouvelle liste</h1>
+    <form action="#" method="post" [formGroup]="softListForm" class="softList" (ngSubmit)="createSoftList()">
+        <label for="title">Titre</label><input type="text" name="title" id="title" formControlName="title">
+        <label for="description">Description</label><textarea name="description" id="description" cols="40" rows="10" formControlName="description"></textarea>
+        <div class="horizontal">
+            <label for="isPublic">Public</label><input type="checkbox" name="isPublic" id="isPublic" formControlName="isPublic">
+        </div>
+        <div class="horizontal">
+            <label for="category">Category</label>
+            <select name="category" id="category" formControlName="categoryId">
+                @for (cat of allCategories; track $index) {
+                    <option [value]="cat.categoryId">{{ cat.name }}</option>
+                }
+                @empty {
+                    <option value="aucune_categorie">Aucune catégorie</option>
+                }
+            </select>
+        </div>
+        <input type="submit" value="Créer la liste" class="AddSoftList">
+                
+        <div class="errorMessage">
+            @if (softListForm.get("title")?.invalid) {
+                <p>Titre invalide</p>
             }
-            @empty {
-                <option value="aucune_categorie">Aucune catégorie</option>
+            @if (softListForm.get("description")?.invalid) {
+                <p>Description invalide</p>
             }
-        </select>
-    </div>
-    <input type="submit" value="Créer la liste" class="AddSoftList">
-            
-    <div class="errorMessage">
-        @if (softListForm.get("title")?.invalid) {
-            <p>Titre invalide</p>
-        }
-        @if (softListForm.get("description")?.invalid) {
-            <p>Description invalide</p>
-        }
-        @if (softListForm.get("category")?.invalid) {
-            <p>Aucune catégorie sélectionner</p>
-        }
-    </div>
-</form>
+            @if (softListForm.get("category")?.invalid) {
+                <p>Aucune catégorie sélectionner</p>
+            }
+        </div>
+    </form>
+</div>

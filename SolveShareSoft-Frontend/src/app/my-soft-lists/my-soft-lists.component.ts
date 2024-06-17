@@ -6,13 +6,14 @@ import { AlertService } from '../services/alert.service';
 import { Subscription } from 'rxjs';
 import { SoftwarelistService } from '../services/softwarelist.service';
 import { UserService } from '../services/user.service';
+import { SidebarComponent } from "../sidebar/sidebar.component";
 
 @Component({
-  selector: 'app-my-soft-lists',
-  standalone: true,
-  imports: [DatePipe, RouterLink],
-  templateUrl: './my-soft-lists.component.html',
-  styleUrl: './my-soft-lists.component.scss'
+    selector: 'app-my-soft-lists',
+    standalone: true,
+    templateUrl: './my-soft-lists.component.html',
+    styleUrl: './my-soft-lists.component.scss',
+    imports: [DatePipe, RouterLink, SidebarComponent]
 })
 export class MySoftListsComponent implements OnInit, OnDestroy {
   public mySoftLists: SoftwareList[];
