@@ -1,6 +1,6 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { SoftwareList } from '../shared/software-list';
 import { AlertService } from '../services/alert.service';
 import { Subscription } from 'rxjs';
@@ -18,7 +18,7 @@ export class MySoftListsComponent implements OnInit, OnDestroy {
   public mySoftLists: SoftwareList[];
   private sub: Subscription;
 
-  constructor(private readonly _alert: AlertService, private readonly _userService: UserService) {
+  constructor(private readonly _alert: AlertService, private readonly _userService: UserService, private readonly _router: Router) {
     this.mySoftLists = [];
     this.sub = new Subscription();
   }
@@ -38,6 +38,11 @@ export class MySoftListsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
       this.sub.unsubscribe();
+  }
+
+  public getSoftListDetails(softListId: number) {
+    const softList: SoftwareList | undefined = this.mySoftLists.find((sfl) => sfl.softwareListId === softListId);
+    this._router.navigate(['softwares/mylists/details', softList?.softwareListId]);
   }
 
 }

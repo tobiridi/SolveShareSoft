@@ -8,7 +8,7 @@
     
         <section class="softwarelists-content">
             @for (softList of mySoftLists; track $index) {
-                <article class="list-container">
+                <article class="list-container" (click)="getSoftListDetails(softList.softwareListId)">
                     <div class="list-title">
                         <h3> {{ softList.title }}</h3>
                         <p class="list-category"><strong>{{ softList.category.name }}</strong></p>

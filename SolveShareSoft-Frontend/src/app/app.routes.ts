@@ -7,6 +7,7 @@ import { ErrorpageComponent } from './errorpage/errorpage.component';
 import { AddSofwarelistComponent } from './add-sofwarelist/add-sofwarelist.component';
 import { DeleteSoftwarelistComponent } from './delete-softwarelist/delete-softwarelist.component';
 import { MySoftListsComponent } from './my-soft-lists/my-soft-lists.component';
+import { SoftListDetailsComponent } from './soft-list-details/soft-list-details.component';
 
 export const routes: Routes = [
     {path: '', component: HomeComponent},
@@ -14,6 +15,7 @@ export const routes: Routes = [
     {path: 'softwares/add', component: AddSofwarelistComponent},
     {path: 'softwares/delete', component: DeleteSoftwarelistComponent},
     {path: 'softwares/mylists', component: MySoftListsComponent},
+    {path: 'softwares/mylists/details/:softListId', component: SoftListDetailsComponent},
     // {path:'softwares/update/:id', component: },
     {path: 'register', component: RegisterComponent},
     {path: 'login', component: LoginComponent},
