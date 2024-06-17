@@ -12,4 +12,6 @@ softwareListRouter.route('/:id')
     // .put(softwareListController.updateSoftList)
     .delete(authMiddleware.verifyToken, softwareListController.deleteSoftList)
 
+softwareListRouter.get('/:id/software', authMiddleware.verifyToken, softwareListController.getSoftListDetails)
+
 module.exports = softwareListRouter;

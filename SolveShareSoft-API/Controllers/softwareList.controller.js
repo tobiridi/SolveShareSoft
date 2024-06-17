@@ -14,6 +14,31 @@ const softwareListController = {
 
         return res.status(500).json({ status: 500, message: `Can not get software list` });
     },
+    
+    getSoftListDetails: async (req, res, next) => {
+        try {
+            const validData = await softwareListValidator.verifId.validate(req.params);
+            const userId = req.payload.user_id;
+
+            const dbResult = await softwareListService.getSoftwaresFromSoftList(userId, validData.id);
+    
+            if (dbResult) {
+                return res.status(200).json({ status: 200, data: dbResult });
+            }
+    
+            return res.status(500).json({ status: 500, message: `Can not get softwares from the software list '${req.params.id}'` });
+        } catch (error) {
+            //yup validation
+            if (error instanceof ValidationError) {
+                //console.error(error);
+                return res.status(400).json({ status: 400, message: error.errors });
+            }
+            else {
+                console.error(error);
+                return res.status(500).json({ status: 500, message: `Internal Server Error` });
+            }
+        }
+    },
 
     createSoftList: async (req, res, next) => {
         try {
