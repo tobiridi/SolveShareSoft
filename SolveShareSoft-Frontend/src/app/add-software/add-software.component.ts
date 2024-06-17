@@ -22,7 +22,7 @@ export class AddSoftwareComponent implements OnDestroy {
 
   constructor(private readonly _builder: FormBuilder, private readonly _alert: AlertService, private readonly _soft: SoftwareService) {
     this.softForm = this._builder.group({
-      name: [null, [Validators.minLength(3), Validators.maxLength(100), Validators.required]],
+      name: [null, [Validators.minLength(5), Validators.maxLength(100), Validators.required]],
       description: [null, [Validators.minLength(5), Validators.maxLength(250)]],
       version: [null, [Validators.minLength(1), Validators.maxLength(50), Validators.required]],
       size: [null, [Validators.min(1), Validators.max(9999), Validators.required]],
@@ -46,14 +46,14 @@ export class AddSoftwareComponent implements OnDestroy {
       body.softwareListId = this.currentSoftList?.softwareListId;
       const addSoftSub: Subscription = this._soft.createSoft(body).subscribe({
         next: (value: any) => {
-          console.log(value);
           if(value.status === 201) {
-            this._alert.displayAlert("Software créer", 'success');
+            this._alert.displayAlert("Logiciel créer", 'success');
             this.visibilityEmitter.emit(false);
           }
         },
         error: (err) => {
           console.error(err);
+          this._alert.displayAlert("Erreur lors de la création du logiciel", 'error');
         }
       });
 
@@ -67,6 +67,7 @@ export class AddSoftwareComponent implements OnDestroy {
 
   public cancelForm(): void {
     this.visibilityEmitter.emit(false);
+      
   }
 
 }

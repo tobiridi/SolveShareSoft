@@ -15,16 +15,14 @@ export class SoftwareService {
    public createSoft(softData: any): Observable<any> {
     return this._httpClient.post<any>(this.apiURL, softData)
       .pipe(map(response => {
-        console.log(response);
         return response;
       }));
   }
 
-  // public deleteSoft(softId: number): Observable<any> {
-  //   return this._httpClient.delete<any>(`${this.apiURL}/${softId}`)
-  //     .pipe(map(response => {
-  //       console.log(response);
-  //       return response;
-  //     }));
-  // }
+  public deleteSoft(softId: number): Observable<any> {
+    return this._httpClient.delete<any>(`${this.apiURL}/${softId}`)
+      .pipe(map(response => {
+        return response;
+      }));
+  }
 }

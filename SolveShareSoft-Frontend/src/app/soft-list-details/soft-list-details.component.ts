@@ -6,6 +6,8 @@ import { Subscription } from 'rxjs';
 import { AlertService } from '../services/alert.service';
 import { DatePipe, DecimalPipe } from '@angular/common';
 import { AddSoftwareComponent } from '../add-software/add-software.component';
+import { SoftwareService } from '../services/software.service';
+import { Software } from '../shared/software';
 
 @Component({
   selector: 'app-soft-list-details',
@@ -21,7 +23,9 @@ export class SoftListDetailsComponent implements OnInit, OnDestroy {
   public addSoftFormVisible: boolean;
 
   constructor(private readonly _activedRoute: ActivatedRoute,
-    private readonly _softList: SoftwarelistService, private readonly _alert: AlertService) {
+    private readonly _softList: SoftwarelistService,
+    private readonly _alert: AlertService,
+    private readonly _soft: SoftwareService) {
 
     this.sub = new Subscription();
     this.softListId = this._activedRoute.snapshot.params ["softListId"];
@@ -47,8 +51,21 @@ export class SoftListDetailsComponent implements OnInit, OnDestroy {
   }
 
   public deleteSoft(softId: number): void {
-    //TODO: delete software
-    console.log(softId);
+    const delSoftSub: Subscription = this._soft.deleteSoft(softId).subscribe({
+      next: (value: any) => {
+        const softs: Software[] | undefined = this.currentSoftList?.softwares;
+        if(this.currentSoftList && softs) {
+          this.currentSoftList.softwares = softs?.filter(s => s.softwareId !== softId);
+        }
+        this._alert.displayAlert("Logiciel supprimer", 'success');
+      },
+      error: (err) => {
+        console.error(err);
+        this._alert.displayAlert("Erreur lors de la suppression du logiciel", 'error');
+      }
+    });
+    
+    this.sub.add(delSoftSub);
   }
 
   public addSoftware(): void {
