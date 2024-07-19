@@ -2,7 +2,7 @@ const sqlConfig = {
     user: process.env.DB_USER,
     password: process.env.DB_PWD,
     database: process.env.DB_NAME,
-    server: 'localhost',
+    server: 'web-app.database.windows.net',
     port: 1433,
     connectionTimeout: 1500,
     requestTimeout: 1500,
@@ -12,7 +12,7 @@ const sqlConfig = {
         idleTimeoutMillis: 30000,
     },
     options: {
-        //encrypt: true, //for Microsoft azure
+        encrypt: true, //for Microsoft azure
         trustServerCertificate: true //change to true for local dev / self-signed certs
     }
 };
