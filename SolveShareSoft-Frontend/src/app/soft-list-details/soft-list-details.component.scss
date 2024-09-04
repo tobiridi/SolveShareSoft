@@ -1,0 +1,43 @@
+:host {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    
+    h1 {
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    h2 {
+        margin-left: 1.3rem;
+    }
+    
+    table {
+        border-collapse: separate;
+        border: 2px solid rgb(140 140 140);
+        font-size: 1.5rem;
+        margin: 1rem 1rem;
+    
+        tr {
+            border: 1px solid #000000;
+        }
+    
+        thead {
+          background-color: rgb(228 240 245);
+        }
+    
+        button {
+            margin-left: 8px;
+            font-size: 1.2rem;
+        }
+    
+    }
+}

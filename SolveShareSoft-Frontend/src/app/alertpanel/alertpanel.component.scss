@@ -1,0 +1,46 @@
+.alert {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-width: 400px;
+    font-weight: 400;
+    padding: 20px;
+    display: block;
+    border-radius: 20px;
+    opacity: 0;
+    animation: popAlert 2.5s;
+
+    &.info {
+        color: #184c77;
+        background-color: #c0e6ff;
+    }
+
+    &.error {
+        color: #671414;
+        background-color: #f9d4d4;
+    }
+
+    &.success {
+        color: #0f5722;
+        background-color: #cbedd6;
+    }
+    
+    &.warning {
+        color: #764705;
+        background-color: #feecc5;
+    }
+}
+
+@keyframes popAlert {
+    0% {
+        bottom: 0;
+    }
+    30% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 10px;
+        opacity: 1;
+    }
+}

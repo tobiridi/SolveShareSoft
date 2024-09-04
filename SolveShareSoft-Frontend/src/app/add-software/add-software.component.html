@@ -1,0 +1,44 @@
+<h1>Ajout d'un nouveau logiciel</h1>
+<form action="#" method="post" [formGroup]="softForm" class="softList" (ngSubmit)="createSoft()">
+    <label for="softName">Nom</label><input type="text" name="softName" id="softName" formControlName="name">
+    <label for="version">Version</label><input type="text" name="version" id="version" formControlName="version">
+    <label for="lang">Langue</label><input type="text" name="lang" id="lang" formControlName="lang">
+    <label for="link">Lien</label><input type="text" name="link" id="link" formControlName="link">
+    <div class="horizontal">
+        <label for="size">Taille</label><input type="number" maxlength="4" size="4" min="0" name="size" id="size" formControlName="size">
+        <select name="sizeUnit" id="sizeUnit" formControlName="sizeUnit">
+            <option value="o">Octet</option>
+            <option value="Ko">Ko</option>
+            <option value="Mo">Mo</option>
+            <option value="Go">Go</option>
+            <option value="To">To</option>
+        </select>
+    </div>
+    <label for="description">Description</label><textarea name="description" id="description" cols="40" rows="10" formControlName="description"></textarea>
+    <input type="submit" value="Ajouter le logiciel">
+    <input type="button" value="Annuler" (click)="cancelForm()">
+            
+    <div class="errorMessage">
+        @if (softForm.get("name")?.invalid) {
+            <p>Nom invalide</p>
+        }
+        @if (softForm.get("description")?.invalid) {
+            <p>Description invalide</p>
+        }
+        @if (softForm.get("version")?.invalid) {
+            <p>Version invalide</p>
+        }
+        @if (softForm.get("size")?.invalid) {
+            <p>Taille invalide</p>
+        }
+        @if (softForm.get("sizeUnit")?.invalid) {
+            <p>Unité invalide</p>
+        }
+        @if (softForm.get("lang")?.invalid) {
+            <p>Langue invalide</p>
+        }
+        @if (softForm.get("link")?.invalid) {
+            <p>Lien invalide</p>
+        }
+    </div>
+</form>

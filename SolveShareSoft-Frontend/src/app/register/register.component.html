@@ -1,0 +1,49 @@
+<h1>Formulaire d'inscription</h1>
+<form action="#" method="post" [formGroup]="registerFrom" class="register" (ngSubmit)="validRegisterForm()">
+    @switch (currentPage) {
+        @case (1) {
+            <label for="email">Email*</label><input type="email" name="email" id="email" formControlName="email">
+            <label for="username">Nom d'utilisateur*</label><input type="text" name="username" id="username" formControlName="username">
+            <label for="password">Mot de passe*</label><input type="password" name="password" id="password" formControlName="password">
+            <label for="confirmPassword">Confirmer mot de passe*</label><input type="password" name="confirmPassword" id="confirmPassword" formControlName="confirmPassword">
+            <button type="button" (click)="nextPage()" class="nextBtn">Suivant</button>
+        }
+        @case (2) {
+            <label for="specialisation">Spécialisation</label><input type="text" name="specialisation" id="specialisation" disabled>
+            <label for="socialMedia"></label>Réseaux sociaux<input type="text" name="socialMedia" id="socialMedia" formControlName="socialMedia">
+            <label for="website"></label>Site web<input type="text" name="website" id="website" formControlName="website">
+            <div class="actionsBtn">
+                <button type="button" (click)="previousPage()" class="prevBtn">Précédent</button>
+                <button type="button" (click)="nextPage()" class="nextBtn">Suivant</button>
+            </div>
+            
+        }
+        @case (3) {
+            <label for="country"></label>Pays<input type="text" name="country" id="country" formControlName="country">
+            <label for="biography">Biographie</label><textarea name="biography" id="biography" rows="8" cols="25"  formControlName="biography"></textarea>
+            <div class="actionsBtn">
+                <button type="button" (click)="previousPage()" class="prevBtn">Précédent</button>
+                <input type="submit" class="validateBtn" value="S'inscrire">
+            </div> 
+        }
+    }
+    <div class="errorMessage">
+        @if (registerFrom.get("email")?.invalid) {
+            <p>Format d'email invalide</p>
+        }
+        @if (registerFrom.get("username")?.invalid) {
+            <p>Nom d'utilisateur invalide</p>
+        }
+        @if (registerFrom.get("password")?.invalid) {
+            <p>Mot de passe invalide</p>
+        }
+        @if (!isValidConfirmPassword()) {
+            <p>Les mot de passe ne sont pas identique</p>
+        }
+    </div>
+</form>
+<section class="registerInfo">
+    <h3>Infos</h3>
+    <p>Le nom d'utilisateur doit être de min 3 caractères.</p>
+    <p>Le mot de passe doit être de min 8 caractères.</p>
+</section>

@@ -1,0 +1,15 @@
+<h1>Formulaire de connexion</h1>
+<form action="#" method="post" [formGroup]="loginForm" class="login" (ngSubmit)="validLoginForm()">
+    <label for="email">Email</label><input type="email" name="email" id="email" formControlName="email">
+    <label for="password">Mot de passe</label><input type="password" name="password" id="password" formControlName="password">
+    <input type="submit" value="Se connecter" class="connectBtn">
+            
+    <div class="errorMessage">
+        @if (loginForm.get("email")?.invalid) {
+            <p>Format d'email invalide</p>
+        }
+        @if (loginForm.get("password")?.invalid) {
+            <p>Mot de passe invalide</p>
+        }
+    </div>
+</form>

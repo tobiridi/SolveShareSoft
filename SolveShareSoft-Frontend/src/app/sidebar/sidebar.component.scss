@@ -1,0 +1,60 @@
+:host {
+    height: 100%;
+}
+
+.sidebar {
+    position: relative;
+    width: 250px;
+    height: 100%;
+    padding: 2rem;
+    border-right: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+
+    li {
+        user-select: none;
+        list-style: none;
+        margin-bottom: 2rem;
+
+        a {
+            font-size: 1rem;
+            padding: 0.5rem 0.7rem;
+            text-decoration: none;
+            color: var(--text-color);
+            font-weight: var(--text-weight);
+            cursor: pointer;
+            border: 1px solid var(--primary);
+            border-radius: var(--border-radius);
+
+            &:hover {
+                color: #ffffff;
+                background-color: var(--primary);
+            }
+        }
+    }
+
+    .menuToogle {
+        position: absolute;
+        right: 0.5rem;
+        top: 0%;
+        font-size: 2rem;
+        color: #dbdbdb;
+        cursor: pointer;
+
+        &:hover {
+            color: #020202;
+        }
+
+        &::before {
+            content: '';
+        }
+    }
+
+    &.close {
+        width: 60px;
+        
+        li {
+            display: none;
+        }
+    }
+
+}

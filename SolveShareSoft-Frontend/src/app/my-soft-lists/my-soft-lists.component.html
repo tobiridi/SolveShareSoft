@@ -1,0 +1,36 @@
+<app-sidebar></app-sidebar>
+<div class="container">
+    <div class="softwarelists">
+        <h1>Mes listes de logiciels</h1>
+        <div class="filters">
+            <button type="button">Catégorie</button>
+            <button type="button">Récent</button>
+        </div>
+    
+        <section class="softwarelists-content">
+            @for (softList of mySoftLists; track $index) {
+                <article class="list-container" (click)="getSoftListDetails(softList.softwareListId)">
+                    <div class="list-title">
+                        <h3> {{ softList.title }}</h3>
+                        <p class="list-category"><strong>{{ softList.category.name }}</strong></p>
+                    </div>
+                    <p class="list-description">{{ softList.description }}</p>
+                    <div class="list-details">
+                        <span>Créé le {{ softList.created | date: 'dd/MM/yyyy' }}</span>
+                        <span>Créé par moi</span>
+                        <span>Modifié le {{ softList.lastUpdate | date: 'dd/MM/yyyy' }}</span>
+                        <span>{{ softList.nbrViews }} Vues</span>
+                    </div>
+                </article>
+            }
+            @empty {
+                <p>Vous n'avez aucune liste pour le moment.</p>
+            }
+
+            <!-- TODO: not implemented -->
+            <div class="pagination">
+                <!-- <p>Pagination</p> -->
+            </div>
+        </section>
+    </div>
+</div>
